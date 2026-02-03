@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/app/theme-provider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { SearchCommand } from "@/components/SearchCommand";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || "https://maxencelegendre.com"),
@@ -67,6 +68,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ErrorBoundary>
             <Header />
+            <SearchCommand />
             <main 
               className="flex-1 w-full" 
               role="main"

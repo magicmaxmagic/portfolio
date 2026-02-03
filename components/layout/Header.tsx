@@ -66,6 +66,18 @@ export default function Header() {
             Projects
           </Link>
           <Link 
+            href="/blog" 
+            className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
+          >
+            Blog
+          </Link>
+          <Link 
+            href="/stats" 
+            className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
+          >
+            Stats
+          </Link>
+          <Link 
             href="/architecture" 
             className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
           >
@@ -153,6 +165,20 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Projects
+              </Link>
+              <Link 
+                href="/blog" 
+                className="block text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link 
+                href="/stats" 
+                className="block text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Stats
               </Link>
               <Link 
                 href="/architecture" 
