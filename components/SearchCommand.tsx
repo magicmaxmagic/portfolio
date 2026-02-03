@@ -63,6 +63,13 @@ const PAGES: SearchItem[] = [
     type: "page",
   },
   {
+    id: "testimonials",
+    title: "Testimonials",
+    description: "What people say about my work",
+    href: "/testimonials",
+    type: "page",
+  },
+  {
     id: "about",
     title: "About",
     description: "About me",

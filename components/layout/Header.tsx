@@ -90,6 +90,12 @@ export default function Header() {
             GitHub
           </Link>
           <Link 
+            href="/testimonials" 
+            className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
+          >
+            Testimonials
+          </Link>
+          <Link 
             href="/architecture" 
             className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
           >
