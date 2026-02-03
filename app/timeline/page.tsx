@@ -15,66 +15,84 @@ interface TimelineEvent {
 
 const timeline: TimelineEvent[] = [
   {
-    year: "2018",
-    title: "ML Journey Begins",
-    description: "Started learning machine learning with Python and TensorFlow. First kaggle competition.",
+    year: "2020-2022",
+    title: "Preparatory & Advanced Math",
+    company: "Chevrolier High School",
+    role: "PTSI-PT Program",
+    description: "Intensive French preparatory school program in mathematics and physics. Foundation in rigorous problem-solving and systems thinking.",
     type: "milestone",
-    achievements: ["Completed Andrew Ng's ML course", "First kaggle submission", "Built recommendation system"]
+    achievements: ["Advanced mathematics", "Physics and signal processing", "Competitive exam preparation"]
   },
   {
-    year: "2019",
-    title: "Data Science Role",
-    company: "Marketing Tech Startup",
-    role: "Junior Data Scientist",
-    description: "Led first production ML project - customer churn prediction model.",
+    year: "2022-2026",
+    title: "Telecom Engineering & Cybersecurity",
+    company: "INP Bordeaux (Enseirb-Matmeca)",
+    role: "Telecoms Engineering Degree",
+    description: "Dual degree program in telecommunications engineering and cybersecurity. Focus on distributed systems, signal processing, and security.",
     type: "role",
-    achievements: ["Deployed churn model (92% accuracy)", "Saved company $500K annually", "Built data pipeline with Python/SQL"]
+    achievements: ["GPA: 3.85", "Cybersecurity specialization", "Distributed systems & networking"]
   },
   {
-    year: "2020",
-    title: "NLP Specialization",
-    description: "Deep dive into Natural Language Processing. Built medical entity recognition systems.",
-    type: "achievement",
-    achievements: ["Medical NER: 95% precision", "Published 2 NLP papers", "Built text clustering pipeline for 1M+ documents"]
-  },
-  {
-    year: "2021",
-    title: "Senior ML Engineer",
-    company: "Ubisoft/Gameloft",
-    role: "Senior ML Engineer",
-    description: "Led marketing attribution project handling $50M GMV using Markov chain models.",
+    year: "Jun-Sep 2023",
+    title: "Data Analyst Intern - Industrial Anomaly Detection",
+    company: "Manitou USA",
+    role: "Intern",
+    description: "Developed anomaly detection models for industrial equipment monitoring. Applied statistical analysis and time-series forecasting.",
     type: "role",
-    achievements: ["Markov attribution model", "Led team of 2 junior engineers", "Mentored 5+ data scientists"]
+    achievements: ["Anomaly detection implementation", "Industrial ML pipeline", "Data analysis at scale"]
   },
   {
-    year: "2022",
-    title: "Production ML Systems",
-    description: "Mastered MLOps - deployed 12+ models to production with 99.9% SLA.",
+    year: "2023-2024",
+    title: "Engineering Leadership",
+    company: "INP Bordeaux Sports Office",
+    role: "Vice President",
+    description: "Led sports and recreational programs for engineering school. Managed team of 30+ people and organized events for 1200+ participants.",
     type: "achievement",
-    achievements: ["Blue-green deployments", "ML monitoring with Sentry", "Real-time inference systems"]
+    achievements: ["30-person team management", "1200+ event participants organized", "Strategic program planning"]
   },
   {
-    year: "2023",
-    title: "Fraud Prevention Lead",
-    company: "Prevent SaaS",
-    role: "ML Engineering Lead",
-    description: "Built AI-powered fraud detection reducing fraud by 40% while maintaining <1% false positives.",
+    year: "Jan-May 2024",
+    title: "Software Engineer - Web Scraping & Data Pipelines",
+    role: "Self-employed",
+    description: "Built scalable web scraping pipelines and data collection infrastructure. Python-based automation for market data aggregation.",
     type: "role",
-    achievements: ["Fraud detection: 40% reduction", "Real-time API (< 50ms)", "Prevented $5M+ fraud"]
+    achievements: ["Web scraping infrastructure", "ETL pipeline development", "Data automation at scale"]
   },
   {
-    year: "2024",
-    title: "ML Systems & Architecture",
-    description: "Architected end-to-end ML systems, focus on causal inference and decision science.",
+    year: "Jun-Aug 2024",
+    title: "Security Engineer Intern - Access Control & SIEM",
+    company: "Dedomainia",
+    role: "Intern",
+    description: "Implemented access control systems and security information event management. Focus on infrastructure security and threat detection.",
+    type: "role",
+    achievements: ["SIEM implementation", "Access control systems", "Security infrastructure"]
+  },
+  {
+    year: "2024-2026",
+    title: "IT Engineering & AI/Cloud Specialization",
+    company: "ETS Montréal",
+    role: "Dual Degree - IT Engineering",
+    description: "Exchange program in information technology with focus on artificial intelligence and cloud computing. Concurrent with INP Bordeaux degree.",
     type: "achievement",
-    achievements: ["Causal inference framework", "Decision science applications", "Full-stack ML + React/TypeScript"]
+    achievements: ["GPA: 3.85", "AI & Machine Learning focus", "Cloud infrastructure systems"]
   },
   {
-    year: "2025",
-    title: "Current: Applied ML Engineer",
-    description: "Building production ML systems that drive business impact. Open to consulting & collaborations.",
-    type: "milestone",
-    achievements: ["8+ years ML experience", "50+ successful projects", "Leading edge ML + SWE skills"]
+    year: "Jan-Aug 2025",
+    title: "Software Engineer - Analytics Platform",
+    company: "IVÉO",
+    role: "Full-time Engineer",
+    description: "Built analytics platform using PostgreSQL, FastAPI, and Streamlit. Full-stack development of data visualization and query systems.",
+    type: "role",
+    achievements: ["PostgreSQL database design", "FastAPI backend development", "Streamlit analytics frontend"]
+  },
+  {
+    year: "Sep 2025-Apr 2026",
+    title: "Data Scientist / ML Systems Engineer",
+    company: "Ubisoft Montréal",
+    role: "Intern",
+    description: "Advanced ML systems work using Databricks and MLOps best practices. Building production machine learning infrastructure and models.",
+    type: "role",
+    achievements: ["Databricks MLOps", "Production ML systems", "Distributed ML engineering"]
   }
 ];
 
@@ -92,10 +110,10 @@ export default function TimelinePage() {
       <header className="border-b border-[color:var(--border-color)] py-8">
         <Container>
           <h1 className="text-4xl font-bold mb-2 text-[color:var(--text-primary)]">
-            My Journey
+            Professional Journey
           </h1>
           <p className="text-[color:var(--text-secondary)]">
-            From learning ML to building production systems at scale
+            From foundational mathematics to applied ML systems engineering (2020-2026)
           </p>
         </Container>
       </header>
