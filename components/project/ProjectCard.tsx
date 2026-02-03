@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ProjectMeta } from "@/lib/projects";
-import { ReactionButtons } from "./ReactionButtons";
+import { GitHubRepoStats } from "./GitHubRepoStats";
 
 interface ProjectCardProps {
   project: ProjectMeta;
@@ -104,9 +104,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </Link>
 
-      {/* Reactions - Outside link so they're clickable */}
+      {/* GitHub & Social Stats - Outside link so they're clickable */}
       <div className="p-4 border-t border-slate-700 bg-slate-900/30">
-        <ReactionButtons projectSlug={project.slug} size="small" />
+        <GitHubRepoStats />
       </div>
     </div>
   );
