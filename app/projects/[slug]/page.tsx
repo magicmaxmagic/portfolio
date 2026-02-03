@@ -3,6 +3,7 @@ import { getProjectBySlug, getAllProjects } from "@/lib/projects";
 import Container from "@/components/layout/Container";
 import ProjectMeta from "@/components/project/ProjectMeta";
 import ProjectNav from "@/components/project/ProjectNav";
+import { ReactionButtons } from "@/components/project/ReactionButtons";
 import { mdxComponents } from "@/components/mdx/components";
 import { notFound } from "next/navigation";
 
@@ -65,6 +66,11 @@ export default async function ProjectPage({
 
         <div className="prose prose-slate max-w-none mb-12">
           <MDXRemote source={project.content} components={mdxComponents} />
+        </div>
+
+        <div className="my-12 py-8 bg-slate-50 rounded-lg p-6 border border-slate-200">
+          <div className="text-sm text-slate-600 mb-4 font-semibold">Did you find this project valuable?</div>
+          <ReactionButtons projectSlug={params.slug} size="medium" />
         </div>
 
         <div className="border-t border-slate-200 pt-12">
