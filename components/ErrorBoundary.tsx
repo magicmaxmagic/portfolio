@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, PropsWithChildren, ReactNode } from "react";
+import { captureSentryException } from "@/lib/sentry-utils";
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -18,22 +19,11 @@ export class ErrorBoundary extends Component<PropsWithChildren, ErrorBoundarySta
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Log errors (optional Sentry integration)
-    if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-      // Dynamic import to avoid build issues
-      import("@sentry/nextjs").then((Sentry) => {
-        Sentry.captureException(error, {
-          contexts: {
-            react: {
-              componentStack: errorInfo.componentStack,
-            },
-          },
-        });
-      });
-    } else {
-      console.error("Error:", error);
-      console.error("Error info:", errorInfo);
-    }
+    // Capture in Sentry with context
+    captureSentryException(error, {
+      component: "ErrorBoundary",
+      componentStack: errorInfo.componentStack,
+    });
   }
 
   render(): ReactNode {

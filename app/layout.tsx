@@ -49,11 +49,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Plausible Analytics - Privacy-friendly */}
         <script
-          defer
-          data-domain="maxencelegendre.com"
-          src="https://plausible.io/js/script.js"
+          async
+          src="https://plausible.io/js/pa-X9mUB_Zk65YApLvjhEeyv.js"
         ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+              plausible.init()
+            `,
+          }}
+        />
       </head>
       <body className="flex flex-col min-h-screen">
         <ThemeProvider>
