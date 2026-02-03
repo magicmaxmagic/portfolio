@@ -2,19 +2,18 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { withSentrySpan } from "@/lib/sentry-utils";
-import Link from "next/link";
 
 export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData) as Record<string, string>;
+
     await withSentrySpan(
       "form.submit",
       "Contact Form Submit",
       async (span) => {
-        const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData);
-
         span?.setAttribute("form_fields", Object.keys(data).join(","));
 
         try {
@@ -28,18 +27,18 @@ export default function ContactForm() {
             throw new Error(`Form submission failed: ${response.status}`);
           }
 
-          span?.setStatus("ok");
+          span?.setStatus("ok" as any);
           alert("Message sent successfully!");
           e.currentTarget.reset();
         } catch (error) {
-          span?.setStatus("error");
+          span?.setStatus("error" as any);
           Sentry.captureException(error, {
             tags: { form: "contact" },
           });
           alert("Failed to send message. Please try again.");
         }
       },
-      { user_email: data.get("email") as string }
+      { user_email: data.email || "" }
     );
   };
 

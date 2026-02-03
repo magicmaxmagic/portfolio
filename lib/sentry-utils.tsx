@@ -7,7 +7,6 @@ interface SentryWrapperProps {
   children: ReactNode;
   operation: string;
   name: string;
-  attributes?: Record<string, any>;
 }
 
 /**
@@ -18,7 +17,6 @@ export function SentryWrapper({
   children,
   operation,
   name,
-  attributes = {},
 }: SentryWrapperProps) {
   if (!process.env.NEXT_PUBLIC_SENTRY_DSN) {
     return children;
