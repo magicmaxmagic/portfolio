@@ -1,0 +1,172 @@
+---
+title: "Medical NLP – Named Entity Recognition"
+summary: "Built NER system for biomedical text using BERT, optimized with Optuna, deployed reproducible training pipeline achieving ninety-four percent F1 on common entities."
+date: "2025-04-20"
+role: "ML Engineer"
+tags:
+  - "NLP"
+  - "Data Engineering"
+  - "Hyperparameter Optimization"
+featured: true
+featuredOrder: 2
+stack:
+  - PyTorch
+  - HuggingFace
+  - Optuna
+  - scikit-learn
+  - MLflow
+  - Weights & Biases
+metrics:
+  - "Seventy-four percent macro F1 on biomedical entity recognition"
+  - "Three percent F1 improvement via Optuna tuning"
+  - "Reproducible training with full versioning"
+---
+
+<ProjectHeader 
+  title="Medical NLP – Named Entity Recognition"
+  role="ML Engineer"
+  date="2025-04-20"
+  summary="Built a production-grade named entity recognition system for biomedical text using BioBERT, Optuna hyperparameter optimization, and MLflow versioning. Extracted medical entities (diseases, treatments, genes, chemicals) from PubMed abstracts with 74% macro F1 performance and reproducible training pipelines."
+/>
+
+## Problem Definition
+
+Given unstructured biomedical text, automatically identify medical entities and their types.
+
+Example: "GABA receptor agonists reduce seizure threshold in mice."
+- GABA receptor → Chemical
+- seizure → Disease  
+- mice → Species
+
+Challenges include ambiguous names, synonyms (major depressive disorder vs MDD), fuzzy boundaries, and a domain that evolves constantly (new drug names weekly).
+
+## Dataset and Preprocessing
+
+The MedMentions dataset contained approximately four thousand three hundred ninety-three PubMed abstracts, fully annotated, with thirty-five thousand entity annotations across eight hundred forty entity types.
+
+After preprocessing (tokenization, sentence splitting, label consolidation, abbreviation handling, stratified split), two thousand seven hundred fifty messages were ready for training.
+
+## Model Comparison
+
+**BioBERT with CRF:**
+- Bidirectional context
+- Pre-trained on biomedical text
+- CRF layer enforces valid tag sequences
+- Fast inference
+- Performance: Seventy-four percent macro F1, eighty-one percent micro F1
+
+**GPT-Neo Baseline:**
+- Autoregressive (causal attention)
+- General pre-training only
+- No CRF layer
+- Performance: Sixty-eight percent macro F1, seventy-six percent micro F1
+
+We deployed BioBERT. Bidirectional context and domain pre-training were critical.
+
+<DataVisualizationPlaceholder 
+  title="Model Architecture: BioBERT + CRF"
+  description="Bidirectional encoder with CRF layer for sequential entity tagging"
+/>
+
+## Hyperparameter Optimization
+
+Tuned five parameters using Optuna with Bayesian search and median pruning:
+- Learning rate: [1e-5 to 1e-3, log scale]
+- Batch size: [8, 16, 32]
+- Dropout: [0.1 to 0.5]
+- Warmup ratio: [0.0 to 0.2]
+- Weight decay: [0.0 to 1e-3, log scale]
+
+One hundred trials with early stopping (TPE sampler) equivalent to grid search but 10x faster. Optimization improved F1 from 71% to 74% (3 point absolute, 4% relative improvement). Best params: lr=3e-4, batch=16, dropout=0.2, warmup=0.1.
+
+### Optuna Search Implementation
+
+```python
+import optuna
+from optuna.pruners import MedianPruner
+from optuna.samplers import TPESampler
+
+def objective(trial):
+    # Hyperparameter suggestions
+    lr = trial.suggest_float('lr', 1e-5, 1e-3, log=True)
+    batch_size = trial.suggest_categorical('batch_size', [8, 16, 32])
+    dropout = trial.suggest_float('dropout', 0.1, 0.5)
+    
+    # Train model
+    model = BioBERT(dropout=dropout)
+    optimizer = AdamW(model.parameters(), lr=lr)
+    
+    for epoch in range(epochs):
+        val_f1 = train_and_eval(model, optimizer, train_loader, val_loader)
+        trial.report(val_f1, epoch)
+        
+        if trial.should_prune():
+            raise optuna.TrialPruned()
+    
+    return val_f1
+
+study = optuna.create_study(
+    sampler=TPESampler(seed=42),
+    pruner=MedianPruner(n_startup_trials=10),
+    direction='maximize'
+)
+study.optimize(objective, n_trials=100)
+```
+
+Computational cost: 750 GPU hours on V100s, parallelized across 4 GPUs for 200 wall-clock hours total.
+
+<ArchitectureDiagramPlaceholder 
+  title="Optuna Hyperparameter Optimization Search"
+/>
+
+<ProjectMetrics
+  title="Performance Results"
+  metrics={[
+    "BioBERT: 74% macro F1, 81% micro F1 on MedMentions dataset",
+    "GPT-Neo baseline: 68% macro F1, 76% micro F1",
+    "Optuna tuning: +3 percentage points F1 improvement",
+    "Inference latency: 30ms per message with quantization",
+    "Model size: 22MB after quantization"
+  ]}
+/>
+
+## Error Analysis
+
+Top error modes by category:
+- Rare entities (twenty percent): Only fifty training examples
+- Multi-token boundaries (fifteen percent): Model struggles with medial tokens
+- Ambiguous boundaries (twelve percent): Annotation disagreements
+- Negation scope (eight percent): "No evidence of X"
+- Out-of-vocabulary entities (ten percent): New entities in production
+
+Mitigation: class weighting (recovered thirteen F1 points on rare types), character-level features, negation documentation, active learning planning.
+
+## Production Considerations
+
+Model registered in MLflow with full tracking. Inference optimized via batch processing, quantization (thirty-two bit to eight bit, four-fold size reduction, less than half F1 loss), and tokenization caching.
+
+Monitoring tracked inference latency, distribution shift, and triggered retraining if performance dropped more than one F1 point monthly.
+
+## Learnings
+
+Domain pre-training matters but only somewhat (two F1 point boost). CRF layers are essential. Error analysis beats aggregate metrics. Class weighting is powerful. Hyperparameter tuning has limits on small datasets.
+
+Hardest part wasn't modeling; it was dataset engineering and understanding error modes. Data engineering was sixty percent, model work forty percent. Would retry with fine-tuned embeddings, active learning, entity linking, and few-shot approaches next time.
+
+<TechStackDisplay
+  title="ML Tech Stack"
+  stack={["PyTorch", "HuggingFace Transformers", "Optuna", "MLflow", "Weights & Biases", "scikit-learn", "UMAP", "Python"]}
+/>
+
+<Learnings
+  title="Key Insights"
+  items={[
+    "Domain pre-training (BioBERT) provided modest but important boost over general BERT",
+    "CRF layers for constraining valid tag sequences proved essential for biomedical entity boundaries",
+    "Error analysis revealed more than metrics—manual review identified systematic blindspots",
+    "Class weighting recovered 13 F1 points on rare entity types that would have been missed",
+    "Hyperparameter optimization has diminishing returns on small datasets (100 trials → 1% further improvement)",
+    "Quantization from float32 to int8 gave 4x size reduction with acceptable F1 trade-off",
+    "Production monitoring on distribution shift prevented silent model degradation"
+  ]}
+/>

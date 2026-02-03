@@ -1,0 +1,170 @@
+---
+title: "Unsupervised Text Clustering – Voice of Customer"
+summary: "Unsupervised clustering of three thousand customer feedback messages into twelve semantic clusters using Sentence-Transformers and HDBSCAN, enabling product insights at scale."
+date: "2025-03-10"
+role: "Data Scientist"
+tags:
+  - "Unsupervised Learning"
+  - "NLP"
+  - "Product Analytics"
+featured: true
+featuredOrder: 3
+stack:
+  - Sentence-Transformers
+  - HDBSCAN
+  - UMAP
+  - Pandas
+  - Airflow
+metrics:
+  - "Twelve semantic clusters from three thousand customer messages"
+  - "Three percent noise ratio"
+  - "Ninety percent manual validation accuracy"
+---
+
+<ProjectHeader 
+  title="Unsupervised Text Clustering – Voice of Customer"
+  role="Data Scientist"
+  date="2025-03-10"
+  summary="Automated unsupervised clustering system for customer feedback at scale. Processed 3,000 raw messages into 12 semantic clusters using Sentence-Transformers embeddings and HDBSCAN, delivering structured voice-of-customer insights without manual labeling and enabling monthly trend detection."
+/>
+
+## Problem Definition
+
+Raw customer feedback comes unstructured: support tickets, survey responses, chat logs. To extract product insights, teams typically hire contractors to manually categorize thousands of messages. This is slow, expensive, and doesn't scale.
+
+Our goal: automatically group similar feedback into interpretable clusters, enable monthly recomputation to detect emerging issues, and provide product teams with actionable summaries.
+
+## Dataset and Preprocessing
+
+We collected three thousand customer feedback messages from support tickets, surveys, and user interviews. Messages ranged from single words to five hundred words, averaging sixty words per message.
+
+Preprocessing included normalization (lowercase, punctuation handling), emoji removal (common in chat), and deduplication (seventeen percent duplicates removed).
+
+Final dataset: two thousand five hundred unique, preprocessed messages.
+
+## Embedding Strategy
+
+We used Sentence-Transformers with the all-MiniLM-L6-v2 model:
+- Fast inference (thirty milliseconds per message)
+- Trained on semantic similarity
+- Lightweight (twenty-two megabyte model)
+- Produces three hundred eighty-four dimensional vectors
+
+Alternative approaches considered:
+- TF-IDF: Fast but loses semantic meaning
+- fastText: Good but language-specific
+- BERT: Better quality but hundred times slower
+- OpenAI embeddings: Expensive, external API dependency
+
+Sentence-Transformers offered the right speed-quality tradeoff.
+
+## Clustering Approach
+
+We used HDBSCAN with these parameters:
+- min_cluster_size: ten (small enough to find niche topics, large enough to avoid noise)
+- min_samples: five (balance cluster cohesion and flexibility)
+- algorithm: "best" (auto-select based on data)
+
+HDBSCAN was chosen because:
+- Finds variable-density clusters (unlike k-means)
+- Automatic cluster count (no tuning needed)
+- Outlier detection (three percent flagged as noise)
+- Hierarchical structure available for drill-down
+
+We validated with UMAP visualization (two-dimensional projection) to inspect clusters visually.
+
+## Discovered Clusters
+
+Twelve clusters emerged:
+
+- **Performance issues** (eighteen percent): Slow app, crashes, freezing
+- **Feature requests** (sixteen percent): Missing capabilities, integrations wanted
+- **Pricing concerns** (thirteen percent): Too expensive, unclear billing
+- **Onboarding friction** (eleven percent): Complex setup, documentation gaps
+- **Account/billing** (nine percent): Subscription issues, refund requests
+- **Data export** (eight percent): Want CSV exports, API access
+- **Mobile app issues** (seven percent): App-specific bugs, UX problems
+- **Documentation** (six percent): Docs outdated, examples unclear
+- **Competitor comparison** (five percent): Why not use [competitor]
+- **Partner integrations** (four percent): Zapier, Slack, others
+- **UI/UX feedback** (two percent): Dashboard confusing, weird flows
+
+Three percent of messages were flagged as noise (mixed topics, non-English, spam).
+
+## Validation
+
+We manually reviewed two hundred random messages (ten percent sample) from each cluster to assess coherence. Ninety percent matched the cluster theme—excellent for unsupervised learning.
+
+Silhouette score: zero point thirty-two (decent; customer feedback is naturally messy and overlapping).
+
+<DataVisualizationPlaceholder 
+  title="UMAP Visualization of Text Embeddings"
+  description="Two-dimensional projection of 3,000 customer messages showing 12 semantic clusters with density-based coloring"
+/>
+
+<ProjectMetrics
+  title="Results & Validation"
+  metrics={[
+    "12 semantic clusters extracted from 3,000 messages",
+    "90% manual validation accuracy (10% sample review)",
+    "3% noise ratio (well-separated outliers)",
+    "Silhouette score: 0.32 (reasonable for organic customer feedback)",
+    "Monthly recomputation reveals trend shifts",
+    "Cluster size range: 2% to 18% of corpus"
+  ]}
+/>
+
+## Temporal Analysis
+
+Monthly recomputation revealed trend shifts:
+
+- **Month one:** Performance was top complaint
+- **Month two:** Performance recovered, pricing complaints surged (price increase announcement)
+- **Month three:** Feature requests rose (new competitor launched)
+- **Month four:** Onboarding friction emerged (product redesign caused UX regressions)
+
+This temporal signal enabled the product team to respond faster than traditional surveys.
+
+<ArchitectureDiagramPlaceholder 
+  title="Airflow Pipeline for Continuous Clustering"
+/>
+
+## Production Deployment
+
+Automated pipeline via Airflow:
+1. Fetch new messages from all sources (daily)
+2. Preprocess and deduplicate
+3. Embed via Sentence-Transformers
+4. Cluster with HDBSCAN
+5. Generate cluster summaries (top keywords, sentiment)
+6. Alert on anomalies (new cluster emerged, noise ratio spiked)
+
+Cost: twelve CPU hours monthly. Runs overnight, results available each morning.
+
+## Learnings
+
+Unsupervised learning scales well; no labeling required. HDBSCAN + Sentence-Transformers is a robust combination. Customer feedback clusters have natural hierarchies (drill-down valuable). Temporal analysis beats snapshots. Noise is a feature, not a bug (three percent gives signal quality).
+
+## Next Steps
+
+Plan to fine-tune Sentence-Transformers on customer feedback (ten thousand labeled pairs needed), add sentiment classification per cluster, automate alert generation to product managers, and explore hierarchical clustering for topic drill-down.
+
+The hardest part is stakeholder education (explaining why topics overlap naturally), not the technical implementation.
+
+<TechStackDisplay
+  title="Tech Stack & Deployment"
+  stack={["Sentence-Transformers", "HDBSCAN", "UMAP", "Pandas", "Airflow", "Python", "scikit-learn"]}
+/>
+
+<Learnings
+  title="Key Insights"
+  items={[
+    "Unsupervised learning eliminates labeling bottleneck—scales to thousands of messages without manual effort",
+    "HDBSCAN + Sentence-Transformers is a robust, production-ready combination for semantic clustering",
+    "Customer feedback has natural hierarchical structure; drill-down drill-down and sub-clustering valuable",
+    "Temporal analysis (monthly recomputation) captures trend shifts faster than traditional quarterly surveys",
+    "Noise is a feature—3% noise ratio actually signals good cluster quality and identifies outliers",
+    "Silhouette score of 0.32 is acceptable for organic feedback (naturally messy, overlapping topics)",
+    "Airflow automation reduces manual effort; monthly pipeline cost: 12 CPU hours overnight"
+  ]}
+/>

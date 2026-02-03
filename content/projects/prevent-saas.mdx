@@ -1,0 +1,161 @@
+---
+title: "Prevent – SaaS Product for Web Vulnerability Detection"
+summary: "Co-founded and built SaaS product scanning websites for vulnerabilities, reached twelve thousand MRR with one hundred twenty customers, learned hard lessons about product-market fit and pivoted."
+date: "2024-12-01"
+role: "Co-founder, CTO"
+tags:
+  - "Entrepreneurship"
+  - "SaaS"
+  - "Full-stack"
+featured: false
+stack:
+  - Python
+  - FastAPI
+  - Docker
+  - Kubernetes
+  - PostgreSQL
+  - Stripe
+metrics:
+  - "One hundred twenty paying customers at peak"
+  - "Twelve thousand MRR before pivot"
+  - "Three point three LTV to CAC ratio"
+---
+
+## Executive Summary
+
+I co-founded Prevent, a SaaS product that scanned websites for security vulnerabilities and provided remediation guidance. At peak, we had one hundred twenty paying customers, twelve thousand monthly recurring revenue, and a healthy three point three times life-time-value to customer acquisition cost ratio.
+
+Despite healthy unit economics, we pivoted. Here's why, and what I learned.
+
+## Product Vision
+
+The vision: automated security testing for every website. Developers should scan continuously, catch vulnerabilities early, and fix before they reach production. We'd handle the hard infrastructure (distributed scanning, false positive filtering, detailed reporting).
+
+## How It Worked
+
+**Authentication:** GitHub OAuth (developers use GitHub; reduces friction).
+
+**Scanning:** User configures URLs → our scanner runs every week → detects SQL injection, XSS, insecure headers, outdated libraries, weak TLS, API key exposure, etc.
+
+**Results:** Dashboard shows vulnerabilities, severity, remediation steps, and related CVEs. Email alerts on new issues.
+
+**Monetization:** Three tiers:
+- Starter: Five thousand monthly scans, five dollar per month (target: students)
+- Pro: Fifty thousand scans, ninety-nine dollars per month (target: teams)
+- Enterprise: Custom, custom limits, $2.5k+ per month (target: enterprises)
+
+**Tech Stack:**
+- Backend: Python FastAPI + SQLAlchemy (async/await for 10k req/s throughput)
+- Database: PostgreSQL (primary) + Redis (session cache, job queue)
+- Scanning: Chromium headless + OWASP ZAP plugins
+- Infrastructure: Docker + Kubernetes (AWS EKS, auto-scaled 10-50 pods)
+- Payments: Stripe (webhooks for subscription lifecycle)
+- Monitoring: Datadog + CloudWatch (P95 latency < 500ms SLA)
+
+## Traction
+
+Initial inbound:
+- Month one: Ten customers (friends, Twitter audience)
+- Month three: Thirty customers (SEO driving organic traffic)
+- Month six: Eighty customers (product hunt launch, viral among indie hackers)
+- Month twelve: One hundred twenty customers at peak
+
+Revenue grew to twelve thousand MRR. Unit economics were healthy: thirty percent gross margin after infrastructure costs, CAC of thirty dollars, LTV of one hundred dollars.
+
+<DataVisualizationPlaceholder 
+  title="Customer Growth & Revenue Trajectory"
+  description="Monthly recurring revenue and customer count progression over 12 months"
+/>
+
+## Why We Pivoted
+
+Despite traction, we hit a ceiling. Here's why:
+
+### False Positives Killed Trust
+
+Our scanner detected potential vulnerabilities, not confirmed ones. This meant false positives—lots of them. Developers got alert fatigue. They stopped trusting the tool.
+
+Example: We flagged "custom header detected" as a potential information disclosure risk. But custom headers are rarely exploitable alone. False positive.
+
+We could have improved our heuristics, but that was a never-ending arms race. Rule-based scanning doesn't scale to unknown vulnerabilities.
+
+### Sales Friction
+
+The product was bottom-up (developers discover, buy directly). But scaling past one hundred customers meant top-down sales: selling to security teams, IT managers, compliance officers.
+
+Security buyers want:
+- Integrations with existing tools (Jira, Slack, SIEM platforms)
+- Compliance reports (SOC two attestation, HIPAA, PCI)
+- Sales engineer support
+- Custom scanning rules
+
+We were a scrappy startup. Enterprise sales required hiring sales people, building integrations, passing security audits ourselves. High friction.
+
+### Competitive Pressure
+
+By month nine, larger players (Snyk, Wiz, Lacework) were moving into web scanning. They had:
+- Hundreds of millions in funding
+- Team of security researchers finding real vulnerabilities (not rules-based detection)
+- Existing customer relationships
+- Better brand recognition
+
+We couldn't compete on feature count or credibility.
+
+### Market Mismatch
+
+The real market wasn't solo developers; it was enterprises with security programs already in place. Those buyers expected machine learning-powered detection, not rule-based heuristics.
+
+Our differentiation (simplicity for indie developers) wasn't valuable to the actual revenue pool (enterprises).
+
+## What Went Right
+
+- Built working product in eight weeks
+- Reached profitability at month four
+- Achieved healthy unit economics
+- Found initial market (indie developers)
+- Built team that shipped iteratively
+
+<ArchitectureDiagramPlaceholder 
+  title="Prevent Architecture: Distributed Scanning Infrastructure"
+/>
+
+## What Went Wrong
+
+- Over-rotated on false-positive reduction (rat hole)
+- Didn't interview buyers early enough (sales friction hidden until month eight)
+- Missed macro trend: real scanning requires ML and threat intelligence, not rules
+- Competed with well-funded entrants
+
+## Learnings
+
+One: Product-market fit is binary. We had indie developer fit, not enterprise fit. Scaling one doesn't lead to scaling the other.
+
+Two: Unit economics aren't enough. Healthy LTV/CAC means nothing if the market isn't there. We had the right metrics for the wrong market.
+
+Three: False positives are worse than false negatives. A tool that's overly conservative is better trusted than one that cries wolf.
+
+Four: Timing matters. Two years earlier, we would have been alone. Two years later, the ML-powered scanning market would be defined. We landed in the awkward middle.
+
+Five: Sales friction is real. A product that requires enterprise sales is fundamentally different from one that's bottom-up. Don't pretend you can do both.
+
+Six: Pick a defensible wedge. Indie developers is a big market but low willingness to pay. Enterprises have budget but high expectations. Neither was our sweet spot.
+
+## What I'd Do Differently
+
+One: Pick a wedge (enterprises or developers), commit fully, and build for that buyer.
+
+Two: Interview security teams, not just developers, in month one.
+
+Three: Partner with scanning researchers or licensing threat intelligence from day one (don't rebuild ML).
+
+Four: Start with one use case (e.g., API security) instead of scanning everything.
+
+Five: Recognize when to pivot early (by month three, not month twelve).
+
+## Legacy
+
+The code, infrastructure, and process were production-grade. Team was strong. Unit economics were healthy. But without product-market fit at scale, none of it mattered.
+
+Shutdown cleanly, refunded all prepaid customers, and open-sourced the scanning engine. No regrets.
+
+This wasn't a failure; it was data. I learned more in this year than I would have in three years as an employee. Entrepreneurship has non-linear returns: most attempts don't succeed, but the hits are huge. This was a shot we had to take.

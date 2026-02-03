@@ -1,0 +1,14 @@
+{$DOMAIN} {
+    reverse_proxy portfolio:3000 {
+        header_uri /-/health /health
+        health_uri /-/health
+        health_timeout 5s
+        health_interval 10s
+    }
+
+    log {
+        level INFO
+    }
+
+    encode gzip
+}

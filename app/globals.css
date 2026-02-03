@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Light mode colors */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-tertiary: #64748b;
+  --border-color: #e2e8f0;
+  --accent-blue: #2563eb;
+  --accent-purple: #7c3aed;
+  --accent-rose: #e11d48;
+  color-scheme: light;
+}
+
+/* Dark mode colors */
+html.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #475569;
+  --accent-blue: #60a5fa;
+  --accent-purple: #a78bfa;
+  --accent-rose: #f43f5e;
+  color-scheme: dark;
+}
+
+* {
+  @apply border-[color:var(--border-color)];
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+  @apply bg-[color:var(--bg-primary)] text-[color:var(--text-primary)];
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+  @apply text-[color:var(--accent-blue)] hover:opacity-80 transition-opacity;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+/* Design system */
+.glass {
+  @apply bg-[color:var(--bg-secondary)] backdrop-blur-sm border border-[color:var(--border-color)];
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+html.dark .card-hover:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-[color:var(--accent-blue)] text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity;
+}
+
+.btn-secondary {
+  @apply bg-[color:var(--bg-tertiary)] text-[color:var(--text-primary)] px-6 py-3 rounded-lg font-medium hover:opacity-80 transition-opacity;
+}
+
+.btn-ghost {
+  @apply text-[color:var(--text-primary)] px-4 py-2 rounded-lg hover:bg-[color:var(--bg-tertiary)] transition-colors;
+}
+
+/* Utility */
+.label {
+  @apply text-xs font-semibold text-[color:var(--text-tertiary)] uppercase tracking-wide;
+}
+
+.badge {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-medium bg-[color:var(--bg-tertiary)] text-[color:var(--text-secondary)];
+}
+
+
+h1 {
+  @apply text-5xl font-bold mt-12 mb-4;
+}
+
+h2 {
+  @apply text-4xl font-bold mt-10 mb-3;
+}
+
+h3 {
+  @apply text-3xl font-semibold mt-8 mb-2;
+}
+
+h4 {
+  @apply text-xl font-semibold mt-6 mb-2;
+}
+
+p {
+  @apply text-base leading-7 mb-4;
+}
+
+code {
+  @apply font-mono text-sm px-2 py-1 rounded;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+pre {
+  @apply p-4 rounded-lg overflow-x-auto mb-4;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+pre code {
+  @apply bg-transparent p-0;
+}
+
+ul,
+ol {
+  @apply mb-4 ml-4;
+}
+
+li {
+  @apply mb-2 text-base leading-7;
+}
+
+ul li {
+  @apply list-disc;
+}
+
+ol li {
+  @apply list-decimal;
+}
+
+blockquote {
+  @apply border-l-4 pl-4 italic my-4;
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+table {
+  @apply border-collapse w-full mb-4;
+}
+
+table th {
+  @apply border px-4 py-2 text-left font-semibold;
+  border-color: var(--border-color);
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+table td {
+  @apply border px-4 py-2;
+  border-color: var(--border-color);
+}

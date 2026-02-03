@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio
+    restart: unless-stopped
+    expose:
+      - "3000"
+    networks:
+      - portfolio-network
+    environment:
+      - NODE_ENV=production
+      - SITE_URL=${SITE_URL:-https://maxencelegendre.com}
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - portfolio-network
+    environment:
+      - DOMAIN=${DOMAIN:-maxencelegendre.com}
+    depends_on:
+      - portfolio
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  caddy_data:
+    driver: local
+  caddy_config:
+    driver: local

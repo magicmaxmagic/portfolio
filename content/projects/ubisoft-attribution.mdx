@@ -1,0 +1,126 @@
+---
+title: "Marketing Attribution at Scale – Ubisoft"
+summary: "End-to-end attribution modeling combining Markov chains and Bayesian methods for optimal marketing spend allocation."
+date: "2025-06-15"
+role: "Data Scientist"
+tags:
+  - "Causal Inference"
+  - "MLOps"
+  - "Marketing Analytics"
+featured: true
+featuredOrder: 1
+stack:
+  - Snowflake
+  - Databricks
+  - Metaflow
+  - MLflow
+  - Tableau
+metrics:
+  - "15% improvement in install efficiency across channels"
+  - "Unified attribution framework replacing five ad-hoc approaches"
+  - "Weekly model retrain pipeline with four-hour SLA"
+---
+
+<ProjectHeader 
+  title="Marketing Attribution at Scale"
+  role="Data Scientist"
+  date="2025-06-15"
+  summary="At Ubisoft, I designed an end-to-end marketing attribution pipeline combining Markov chains, removal effect analysis, and Bayesian media mix modeling—enabling smarter budget allocation across channels and answering the core question: For every dollar spent in marketing, which channel drove the most incremental player acquisition?"
+/>
+
+## The Business Problem
+
+Marketing budgets are finite and tuned daily. Misallocation compounds: under-fund high-ROI channels, and growth starves. Traditional analytics (last-click attribution) biases toward bottom-funnel channels and undervalues top-funnel brand-building.
+
+Without good attribution, marketing decisions default to politics and gut feel. We needed a single source of truth.
+
+<ProjectMetrics 
+  title="Impact Metrics"
+  metrics={[
+    "15% improvement in install efficiency across all channels",
+    "Replaced five separate ad-hoc attribution spreadsheets with unified system",
+    "Weekly model retraining with sub-4-hour SLA",
+    "Confidence intervals on all budget recommendations",
+    "Real-time dashboard for marketing stakeholders"
+  ]}
+/>
+
+<DataVisualizationPlaceholder 
+  title="Attribution Model Performance"
+  description="Comparison of attribution methods across channels with ROI improvement metrics"
+/>
+
+## Why Attribution Is Hard
+
+Attribution requires causality, not correlation. Seeing a path (search ad → social retargeting → install) doesn't tell us if both channels caused the install or if the player would have installed anyway.
+
+Adding to complexity: not every touchpoint is tracked, audience impact is noisy, seasonality confounds signals, and external events skew data.
+
+Different approaches have different blindspots:
+- Last-click: Wrong, biases toward retargeting
+- First-click: Wrong in opposite direction  
+- Linear attribution: Heuristic, not causal
+- Markov chains: Elegant but assumes stationarity
+- MMM: Powerful for aggregates, coarse-grained
+- RCTs: Gold standard but slow and expensive
+
+## Modeling Approach
+
+We implemented three complementary approaches, each answering a different question.
+
+**Markov Chain Attribution** modeled player journeys as 36-state transactional sequences. Used state removal technique: simulate removing each channel and measure decrease in predicted conversions. Handled 95% of journeys, unexplained variance: 8%.
+
+**Removal Effect Analysis** estimated causal lift if we removed each channel entirely from the journey. Simulated removing 25%, 50%, 100% of spend per channel to generate confidence intervals on effect sizes. Generated bootstrap CI (n=1000) for uncertainty quantification.
+
+**Bayesian Media Mix Modeling** built probabilistic model of installs from spend. Used Adstock transformations (lambda=0.3-0.7) and Hill saturation functions for non-linear response. Fit using hierarchical Bayesian regression with horseshoe priors.
+
+### Implementation Sketch
+
+Markov chain (state removal approach):
+1. Build transition matrix from 2M journey logs (6 month window)
+2. For each channel, zero out incoming transitions (state removal)
+3. Measure impact on predicted conversion rate
+4. Normalize removal effects to budget allocation
+
+Result: 74% correlation with ground-truth labeled conversions (holdout test set).
+
+<ArchitectureDiagramPlaceholder 
+  title="Attribution Pipeline Architecture"
+/>
+
+## Architecture
+
+The pipeline flowed: Snowflake (raw data) → Databricks (PySpark transforms) → Metaflow (orchestration) → MLflow (model registry) → Tableau (dashboards).
+
+Weekly retraining included:
+- Automated data extraction
+- Feature engineering (lags, seasonality)
+- Parallel model training (three approaches)
+- Backtesting validation
+- Results export to reporting
+
+<DataVisualizationPlaceholder 
+  title="Budget Allocation Optimization"
+  description="Weekly budget recommendations with confidence intervals across all channels"
+/>
+
+## Key Results
+
+Delivered 15% improvement in install efficiency, unified framework replacing five spreadsheet approaches, weekly model updates enabling fast iteration, and confidence intervals on all estimates.
+
+<TechStackDisplay
+  title="Tech Stack & Tools"
+  stack={["Snowflake", "Databricks", "PySpark", "Metaflow", "MLflow", "Tableau", "Python", "SQL"]}
+/>
+
+<Learnings
+  title="Key Learnings"
+  items={[
+    "Different statistical techniques highlight different truths—Markov chains, removal effects, and MMM answer complementary questions",
+    "Stakeholder alignment and communication was the bottleneck, not the modeling complexity",
+    "Dataset engineering and data quality were 60% of the work; model building was 40%",
+    "Once the unified attribution model existed, every business question became tractable and data-driven",
+    "Weekly retraining and monitoring required investing in orchestration and MLOps infrastructure",
+    "The real asset wasn't the model—it was having clean, trustworthy data and a shared source of truth"
+  ]}
+/>
