@@ -13,6 +13,15 @@
   }
 }
 
+/* Smooth color transitions for theme switching */
+html {
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+html * {
+  transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+
 /* Light mode colors */
 :root {
   --bg-primary: #ffffff;
