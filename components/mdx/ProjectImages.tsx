@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface ProjectImageProps {
   src: string;
   alt: string;
@@ -10,9 +12,11 @@ export function ProjectImage({ src, alt, caption }: ProjectImageProps) {
   return (
     <figure className="my-8">
       <div className="relative w-full glass rounded-lg overflow-hidden" style={{ backgroundColor: "var(--bg-secondary)" }}>
-        <img
+        <Image
           src={src}
           alt={alt}
+          width={800}
+          height={400}
           loading="lazy"
           className="w-full h-auto"
           style={{ minHeight: "300px" }}
