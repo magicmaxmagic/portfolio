@@ -35,13 +35,6 @@ const PAGES: SearchItem[] = [
     type: "page",
   },
   {
-    id: "blog",
-    title: "Blog",
-    description: "Latest articles",
-    href: "/blog",
-    type: "page",
-  },
-  {
     id: "stats",
     title: "Statistics",
     description: "Key metrics and impact",
@@ -60,13 +53,6 @@ const PAGES: SearchItem[] = [
     title: "GitHub",
     description: "My open-source projects",
     href: "/github",
-    type: "page",
-  },
-  {
-    id: "testimonials",
-    title: "Testimonials",
-    description: "What people say about my work",
-    href: "/testimonials",
     type: "page",
   },
   {
@@ -118,21 +104,6 @@ const PAGES: SearchItem[] = [
     description: "AI-powered fraud prevention",
     href: "/projects/prevent-saas",
     type: "project",
-  },
-  // Static blog samples
-  {
-    id: "article-ml-prod",
-    title: "Building Production ML Systems",
-    description: "Lessons from deploying models at scale",
-    href: "/blog/ml-production-lessons",
-    type: "article",
-  },
-  {
-    id: "article-causal",
-    title: "Causal Inference in Marketing",
-    description: "Beyond correlation to true causation",
-    href: "/blog/causal-inference-marketing",
-    type: "article",
   },
 ];
 

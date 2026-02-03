@@ -60,16 +60,16 @@ export default function Footer() {
               Tech Stack
             </a>
             <a
-              href="/blog"
-              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors"
-            >
-              Blog
-            </a>
-            <a
               href="/timeline"
               className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors"
             >
               Timeline
+            </a>
+            <a
+              href="/projects"
+              className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors"
+            >
+              Projects
             </a>
           </div>
         </div>
