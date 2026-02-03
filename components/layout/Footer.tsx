@@ -13,6 +13,35 @@ export default function Footer() {
           <NewsletterSignup />
         </div>
 
+        {/* CTA Links */}
+        <div className="mb-8 pb-8 border-b border-[color:var(--border-color)]">
+          <p className="text-sm font-semibold text-[color:var(--text-secondary)] mb-4">Get in touch:</p>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="mailto:maxence@example.com"
+              className="px-4 py-2 bg-[color:var(--accent-blue)] text-white rounded-lg hover:opacity-90 transition-opacity text-sm font-medium"
+            >
+              Email
+            </a>
+            <a
+              href="https://linkedin.com/in/maxence-le-gendre"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-[color:var(--accent-blue)] text-[color:var(--accent-blue)] rounded-lg hover:bg-[color:var(--accent-blue)] hover:text-white transition-colors text-sm font-medium"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/magicmaxmagic"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-[color:var(--accent-blue)] text-[color:var(--accent-blue)] rounded-lg hover:bg-[color:var(--accent-blue)] hover:text-white transition-colors text-sm font-medium"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
         {/* Footer Links */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
@@ -23,28 +52,24 @@ export default function Footer() {
               Built with Next.js, TypeScript, and Tailwind CSS
             </p>
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 text-sm">
             <a
-              href="https://github.com/magicmaxmagic"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/stack"
               className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors"
             >
-              GitHub
+              Tech Stack
             </a>
             <a
-              href="https://linkedin.com/in/maxence-le-gendre"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/blog"
               className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors"
             >
-              LinkedIn
+              Blog
             </a>
             <a
-              href="mailto:maxence@example.com"
+              href="/timeline"
               className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors"
             >
-              Email
+              Timeline
             </a>
           </div>
         </div>

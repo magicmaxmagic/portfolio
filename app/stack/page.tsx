@@ -16,24 +16,19 @@ export default function TechStackPage() {
           <div className="mb-6">
             <h3 className="font-semibold">Snowflake</h3>
             <p className="text-slate-600">
-              Data warehouse for structured, time-series data. Used for
-              marketing analytics, ingestion of raw touchpoints, and
-              transformation views.
+              Cloud data warehouse for structured, time-series data and marketing analytics pipelines.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">Databricks</h3>
             <p className="text-slate-600">
-              Unified platform for data engineering and ML. Used for Spark SQL
-              transformations, PySpark distributed ML training, and exploration.
+              Unified platform for distributed data engineering and ML training using Apache Spark.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">PostgreSQL</h3>
             <p className="text-slate-600">
-              Relational database for transactional data, model metadata, and
-              application state. Know indexing, query planning, and connection
-              pooling.
+              Relational database for transactional data, model metadata, and application state.
             </p>
           </div>
         </section>
@@ -43,38 +38,31 @@ export default function TechStackPage() {
           <div className="mb-6">
             <h3 className="font-semibold">Scikit-learn</h3>
             <p className="text-slate-600">
-              Standard library for classical ML. Linear models, decision trees,
-              ensemble methods. Go-to for baseline models and when simplicity
-              matters.
+              Classical ML for linear models, decision trees, ensemble methods, and baseline models.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">PyTorch</h3>
             <p className="text-slate-600">
-              Deep learning framework. Build custom models: neural networks,
-              LSTMs, transformers. Preferred over TensorFlow for research and
-              custom architectures.
+              Deep learning framework for training and evaluation of neural networks, LSTMs, and transformers.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">HuggingFace Transformers</h3>
             <p className="text-slate-600">
-              Pre-trained models for NLP. BERT, GPT variants, sentence
-              transformers. Fine-tuning and inference optimization.
+              Pre-trained NLP models for fine-tuning BERT, GPT variants, and sentence transformers.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">PyMC3</h3>
             <p className="text-slate-600">
-              Bayesian inference for probabilistic modeling. Used for marketing
-              attribution where uncertainty quantification matters.
+              Bayesian inference for probabilistic modeling and uncertainty quantification.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">Optuna</h3>
             <p className="text-slate-600">
-              Hyperparameter optimization via Bayesian search. More efficient
-              than grid/random search, especially when tuning is expensive.
+              Hyperparameter optimization using Bayesian search and pruning strategies.
             </p>
           </div>
         </section>
@@ -84,30 +72,25 @@ export default function TechStackPage() {
           <div className="mb-6">
             <h3 className="font-semibold">Metaflow</h3>
             <p className="text-slate-600">
-              Orchestration for ML workflows. Define DAGs, track metadata,
-              version inputs and outputs. Used for reproducible training
-              pipelines.
+              Workflow orchestration for defining DAGs and versioning ML pipelines.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">MLflow</h3>
             <p className="text-slate-600">
-              Model registry and experiment tracking. Version models, track
-              metrics, enable A/B testing and rollback.
+              Model registry, experiment tracking, versioning, and deployment management.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">Weights & Biases</h3>
             <p className="text-slate-600">
-              Experiment tracking with better UX than MLflow. Log metrics,
-              visualize curves, compare runs efficiently.
+              Experiment tracking and visualization for comparing ML runs and hyperparameter experiments.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">Docker & Kubernetes</h3>
             <p className="text-slate-600">
-              Containerization for reproducibility. Know Docker basics: building
-              images, networking. Kubernetes for orchestration at scale.
+              Containerization for reproducibility and orchestration at scale.
             </p>
           </div>
         </section>
@@ -117,22 +100,19 @@ export default function TechStackPage() {
           <div className="mb-6">
             <h3 className="font-semibold">Sentence-Transformers</h3>
             <p className="text-slate-600">
-              Semantic embeddings for text. Know fine-tuning, pooling
-              strategies, and different model sizes.
+              Semantic text embeddings for similarity search and clustering tasks.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">HDBSCAN</h3>
             <p className="text-slate-600">
-              Density-based clustering. Know when to use it over K-means
-              (variable-density clusters).
+              Density-based clustering for discovering variable-density patterns in text.
             </p>
           </div>
           <div className="mb-6">
             <h3 className="font-semibold">UMAP</h3>
             <p className="text-slate-600">
-              Dimensionality reduction for visualization. Preserves local and
-              global structure better than PCA/t-SNE.
+              Dimensionality reduction for high-dimensional visualization and embedding analysis.
             </p>
           </div>
         </section>

@@ -38,6 +38,28 @@ export default function HomePage() {
               <h1 className="text-5xl sm:text-6xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>
                 Applied ML Systems
               </h1>
+              
+              {/* TL;DR Block */}
+              <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: "var(--bg-secondary)" }}>
+                <p className="font-semibold mb-4" style={{ color: "var(--accent-blue)" }}>
+                  TL;DR: I build production ML systems that drive business outcomes.
+                </p>
+                <ul className="space-y-2" style={{ color: "var(--text-secondary)" }}>
+                  <li className="flex gap-3">
+                    <span className="text-lg">→</span>
+                    <span><strong>Problems:</strong> Attribution, NLP, forecasting, causal inference</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="text-lg">→</span>
+                    <span><strong>Scale:</strong> Billion-row datasets, multi-billion € revenue impact, 12+ production models</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="text-lg">→</span>
+                    <span><strong>Impact:</strong> Real business outcomes: 15% ROI improvements, 94% accuracy systems, marketing decisions at scale</span>
+                  </li>
+                </ul>
+              </div>
+
               <p className="text-xl sm:text-2xl mb-8" style={{ color: "var(--text-secondary)" }}>
                 Building production-scale machine learning systems for decision-oriented problems. Specializing in attribution modeling, NLP, and causal inference.
               </p>
@@ -45,9 +67,9 @@ export default function HomePage() {
                 <Link href="/projects" className="btn-primary">
                   Explore Projects
                 </Link>
-                <Link href="/contact" className="btn-secondary">
+                <a href="mailto:maxence@example.com" className="btn-secondary">
                   Get in Touch
-                </Link>
+                </a>
               </div>
             </div>
           </FadeIn>
@@ -109,7 +131,7 @@ export default function HomePage() {
                 Featured Projects
               </h2>
               <p style={{ color: "var(--text-secondary)" }}>
-                Selected case studies showcasing production ML systems and business impact
+                Selected case studies showcasing production ML systems and business impact. Press <kbd className="px-2 py-1 bg-slate-200 dark:bg-slate-800 rounded text-sm">⌘K</kbd> to search all projects.
               </p>
             </div>
           </FadeIn>
@@ -273,9 +295,27 @@ export default function HomePage() {
               <p className="text-lg mb-8" style={{ color: "var(--text-secondary)" }}>
                 I'm always interested in discussing challenging ML problems, production systems, and companies building at scale.
               </p>
-              <Link href="/contact" className="btn-primary">
-                Start a Conversation
-              </Link>
+              <div className="flex gap-4 justify-center flex-wrap">
+                <a href="mailto:maxence@example.com" className="btn-primary">
+                  Email Me
+                </a>
+                <a 
+                  href="https://linkedin.com/in/maxence-le-gendre" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  LinkedIn
+                </a>
+                <a 
+                  href="https://github.com/magicmaxmagic" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  GitHub
+                </a>
+              </div>
             </div>
           </FadeIn>
         </Container>

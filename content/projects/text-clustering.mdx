@@ -28,6 +28,12 @@ metrics:
   summary="Automated unsupervised clustering system for customer feedback at scale. Processed 3,000 raw messages into 12 semantic clusters using Sentence-Transformers embeddings and HDBSCAN, delivering structured voice-of-customer insights without manual labeling and enabling monthly trend detection."
 />
 
+## TL;DR
+
+- **Problem:** Customer feedback across channels is unstructured; manual categorization is slow and doesn't scale beyond thousands of messages.
+- **Solution:** Unsupervised clustering using Sentence-Transformers embeddings + HDBSCAN; automated pipeline for monthly recomputation.
+- **Impact:** 12 semantic clusters from 3K messages, 90% validation accuracy, zero labeling required; enabled trend detection faster than traditional surveys.
+
 ## Problem Definition
 
 Raw customer feedback comes unstructured: support tickets, survey responses, chat logs. To extract product insights, teams typically hire contractors to manually categorize thousands of messages. This is slow, expensive, and doesn't scale.
@@ -161,10 +167,16 @@ The hardest part is stakeholder education (explaining why topics overlap natural
   items={[
     "Unsupervised learning eliminates labeling bottleneck—scales to thousands of messages without manual effort",
     "HDBSCAN + Sentence-Transformers is a robust, production-ready combination for semantic clustering",
-    "Customer feedback has natural hierarchical structure; drill-down drill-down and sub-clustering valuable",
+    "Customer feedback has natural hierarchical structure; drill-down and sub-clustering valuable",
     "Temporal analysis (monthly recomputation) captures trend shifts faster than traditional quarterly surveys",
     "Noise is a feature—3% noise ratio actually signals good cluster quality and identifies outliers",
     "Silhouette score of 0.32 is acceptable for organic feedback (naturally messy, overlapping topics)",
     "Airflow automation reduces manual effort; monthly pipeline cost: 12 CPU hours overnight"
   ]}
 />
+
+## Trade-offs & Limitations
+
+- **Constraint:** Customer feedback inherently overlaps; some messages belong in multiple clusters (HDBSCAN assigns single membership).
+- **Technical Compromise:** Used Sentence-Transformers instead of fine-tuned embeddings to ship quickly; plan to retrain later with labeled data.
+- **Intentionally Not Done:** Didn't implement sentiment classification per cluster or hierarchical sub-clustering; would require manual taxonomy definition.

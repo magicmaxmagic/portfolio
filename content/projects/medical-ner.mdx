@@ -29,6 +29,12 @@ metrics:
   summary="Built a production-grade named entity recognition system for biomedical text using BioBERT, Optuna hyperparameter optimization, and MLflow versioning. Extracted medical entities (diseases, treatments, genes, chemicals) from PubMed abstracts with 74% macro F1 performance and reproducible training pipelines."
 />
 
+## TL;DR
+
+- **Problem:** Unstructured biomedical text contains domain-specific entities (diseases, chemicals, genes); manual annotation doesn't scale.
+- **Solution:** BioBERT + CRF layer, hyperparameter-tuned with Optuna, versioned in MLflow with full reproducibility.
+- **Impact:** 74% F1 on medical entity recognition with 3 percentage points improvement from optimization; production pipeline with monthly retraining.
+
 ## Problem Definition
 
 Given unstructured biomedical text, automatically identify medical entities and their types.
@@ -170,3 +176,8 @@ Hardest part wasn't modeling; it was dataset engineering and understanding error
     "Production monitoring on distribution shift prevented silent model degradation"
   ]}
 />
+## Trade-offs & Limitations
+
+- **Constraint:** Small dataset (2.7K training samples); rare entities had only 50 examples each.
+- **Technical Compromise:** Used float32 instead of lower precision to maintain F1; chose quantization over distillation to save development time.
+- **Intentionally Not Done:** Didn't implement entity linking or knowledge graph integration; would require external biomedical ontology maintenance.

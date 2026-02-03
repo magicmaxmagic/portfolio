@@ -21,6 +21,12 @@ metrics:
   - "Three point three LTV to CAC ratio"
 ---
 
+## TL;DR
+
+- **Problem:** Web vulnerability scanning requires constant updates; developers want simple automation without false positives.
+- **Solution:** Built end-to-end SaaS platform with GitHub OAuth, distributed Chromium-based scanning, and remediation guidance.
+- **Impact:** 120 customers, 12K MRR, healthy unit economics; pivoted due to market mismatch (indie developer fit, not enterprise scale).
+
 ## Executive Summary
 
 I co-founded Prevent, a SaaS product that scanned websites for security vulnerabilities and provided remediation guidance. At peak, we had one hundred twenty paying customers, twelve thousand monthly recurring revenue, and a healthy three point three times life-time-value to customer acquisition cost ratio.
@@ -159,3 +165,8 @@ The code, infrastructure, and process were production-grade. Team was strong. Un
 Shutdown cleanly, refunded all prepaid customers, and open-sourced the scanning engine. No regrets.
 
 This wasn't a failure; it was data. I learned more in this year than I would have in three years as an employee. Entrepreneurship has non-linear returns: most attempts don't succeed, but the hits are huge. This was a shot we had to take.
+## Trade-offs & Limitations
+
+- **Constraint:** Rule-based scanning inherently generates false positives; ML-powered scanning requires expensive threat intelligence.
+- **Technical Compromise:** Built for indie developers (bottom-up sales); enterprise market required different product architecture and sales motion.
+- **Intentionally Not Done:** Didn't pursue enterprise sales or compliance certifications; would have consumed 6+ months and distracted from core product.

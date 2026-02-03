@@ -28,6 +28,12 @@ metrics:
   summary="At Ubisoft, I designed an end-to-end marketing attribution pipeline combining Markov chains, removal effect analysis, and Bayesian media mix modeling—enabling smarter budget allocation across channels and answering the core question: For every dollar spent in marketing, which channel drove the most incremental player acquisition?"
 />
 
+## TL;DR
+
+- **Problem:** Marketing budgets are finite; misallocation kills growth. Traditional attribution (last-click) is biased and unreliable.
+- **Solution:** Built three complementary attribution models—Markov chains, removal effects, Bayesian MMM—unified in a single weekly-retrain pipeline.
+- **Impact:** 15% improvement in install efficiency, unified source of truth replacing five spreadsheet approaches, confidence intervals on budget allocation.
+
 ## The Business Problem
 
 Marketing budgets are finite and tuned daily. Misallocation compounds: under-fund high-ROI channels, and growth starves. Traditional analytics (last-click attribution) biases toward bottom-funnel channels and undervalues top-funnel brand-building.
@@ -124,3 +130,8 @@ Delivered 15% improvement in install efficiency, unified framework replacing fiv
     "The real asset wasn't the model—it was having clean, trustworthy data and a shared source of truth"
   ]}
 />
+## Trade-offs & Limitations
+
+- **Constraint:** Markov chains assume journey stationarity; seasonal campaigns required retraining from scratch.
+- **Technical Compromise:** Bayesian MMM uses approximate inference; full sampling was too slow for weekly SLA.
+- **Intentionally Not Done:** Didn't attempt causal inference on unmeasured confounders (e.g., organic search impact)—would have required experimental design.
