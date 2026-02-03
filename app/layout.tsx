@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/app/theme-provider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || "https://maxencelegendre.com"),
@@ -69,6 +70,7 @@ export default function RootLayout({
           </ErrorBoundary>
         </ThemeProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
