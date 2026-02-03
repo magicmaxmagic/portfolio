@@ -72,10 +72,22 @@ export default function Header() {
             Blog
           </Link>
           <Link 
+            href="/timeline" 
+            className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
+          >
+            Timeline
+          </Link>
+          <Link 
             href="/stats" 
             className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
           >
             Stats
+          </Link>
+          <Link 
+            href="/github" 
+            className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
+          >
+            GitHub
           </Link>
           <Link 
             href="/architecture" 

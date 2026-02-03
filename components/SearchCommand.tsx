@@ -49,6 +49,20 @@ const PAGES: SearchItem[] = [
     type: "page",
   },
   {
+    id: "timeline",
+    title: "Timeline",
+    description: "My ML journey & career progression",
+    href: "/timeline",
+    type: "page",
+  },
+  {
+    id: "github",
+    title: "GitHub",
+    description: "My open-source projects",
+    href: "/github",
+    type: "page",
+  },
+  {
     id: "about",
     title: "About",
     description: "About me",
