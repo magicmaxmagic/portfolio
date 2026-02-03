@@ -108,17 +108,14 @@ export default function ArchitecturePage() {
             {
               title: "Automation",
               description: "Humans make mistakes. Automate data pipelines, testing, deployment, retraining. Reduce manual work to near-zero.",
-              icon: "⚙️",
             },
             {
               title: "Simplicity",
               description: "Simple models that ship beat perfect models that don't. Optimize for clarity and maintainability over marginal gains.",
-              icon: "🎯",
             },
             {
               title: "Versioning",
               description: "Version data, code, models, and parameters. Rollback capability is non-negotiable. Know exactly what changed between versions.",
-              icon: "📦",
             },
             {
               title: "Documentation",

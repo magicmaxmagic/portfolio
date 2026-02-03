@@ -13,12 +13,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 h-40 flex items-end justify-between p-6 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity" />
           <div className="relative z-10">
-            <h3 className="text-2xl font-bold mb-2 text-slate-50 group-hover:gradient-text transition-all">
+            <h3 className="text-2xl font-bold mb-2 text-[color:var(--text-primary)] group-hover:gradient-text transition-all">
               {project.title}
             </h3>
-          </div>
-          <div className="text-4xl opacity-30 group-hover:opacity-50 transition-opacity">
-            ✨
           </div>
         </div>
 
