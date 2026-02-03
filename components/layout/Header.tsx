@@ -66,12 +66,6 @@ export default function Header() {
             Projects
           </Link>
           <Link 
-            href="/blog" 
-            className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
-          >
-            Blog
-          </Link>
-          <Link 
             href="/timeline" 
             className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
           >
@@ -88,12 +82,6 @@ export default function Header() {
             className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
           >
             GitHub
-          </Link>
-          <Link 
-            href="/testimonials" 
-            className="text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-1"
-          >
-            Testimonials
           </Link>
           <Link 
             href="/architecture" 
@@ -185,13 +173,6 @@ export default function Header() {
                 Projects
               </Link>
               <Link 
-                href="/blog" 
-                className="block text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
-              </Link>
-              <Link 
                 href="/stats" 
                 className="block text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-2"
                 onClick={() => setMobileMenuOpen(false)}
@@ -206,18 +187,18 @@ export default function Header() {
                 Architecture
               </Link>
               <Link 
-                href="/about" 
-                className="block text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link 
                 href="/stack" 
                 className="block text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Stack
+              </Link>
+              <Link 
+                href="/about" 
+                className="block text-[color:var(--text-secondary)] hover:text-[color:var(--accent-blue)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-blue)] rounded px-2 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
               </Link>
               <Link 
                 href="/contact" 
